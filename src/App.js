@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState} from 'react';
 import axios from 'axios'
+import PainelFavoritos from './components/PainelFavoritos';
+// import CardAtleta from './components/CardAtleta';
 
 function App() {
   const [busca, setBusca] = useState('');
@@ -35,7 +36,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>Busca de Atlea</h1>
+      <h1>Busca de Atletas</h1>
       <input
         type="text"
         placeholder='Digite o nome de um atleta'
@@ -56,7 +57,7 @@ function App() {
 
        <hr />
       <h2>Favoritos</h2>
-      {/* <PainelFavoritos favoritos={favoritos} /> */}
+      {<PainelFavoritos favoritos={favoritos} />}
       <ul>
         {favoritos.map((fav) => (
           <li key={fav.id}>{fav.firstname} {fav.lastname}</li>
