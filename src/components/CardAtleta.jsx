@@ -1,25 +1,34 @@
 import React from 'react';
 import './CardAtleta.css';
 
-function CardAtleta({ atleta, onFavoritar }) {
+function CardAtleta({ atleta, onFavoritar, isFavorito }) {
+
+  const teamName = atleta.statistics[0]?.team?.name || 'Sem time';
+  const jerseyNumber = atleta.statistics[0]?.games?.number || 'N/A';
+
   return (
     <div className="card-atleta">
-      <h3>{atleta.firstname} {atleta.lastname}</h3>
-
+      <h3>{atleta.player.name}</h3>
       <img
-        src={`https://nba-players.herokuapp.com/players/${atleta.lastname}/${atleta.firstname}`}
-        alt={`${atleta.firstname} ${atleta.lastname}`}
+        src={atleta.player.photo} 
+        alt={atleta.player.name}
         onError={(e) => {
           e.target.src = 'https://via.placeholder.com/150?text=Sem+Foto';
         }}
+        className="atleta-photo"
       />
-
-      <h5>Camisa {atleta.leagues.standard.jersey}</h5>
-      <h5>Nacionalidade: {atleta.birth.country}</h5>
-      <h5>Time: {atleta.team.name}</h5>
-
-      <br />
-      <button onClick={() => onFavoritar(atleta)}>Adicionar aos favoritos</button>
+      <div className="atleta-info">
+        <h5>Idade: {atleta.player.age}</h5>
+        <h5>Time: {teamName}</h5>
+        <h5>Camisa: {jerseyNumber}</h5>
+        <h5>Posição: {atleta.player.position}</h5>
+      </div>
+      <button 
+        onClick={() => onFavoritar(atleta)}
+        className={`favorite-btn ${isFavorito ? 'favorited' : ''}`}
+      >
+        {isFavorito ? '★ Remover dos favoritos' : '☆ Adicionar aos favoritos'}
+      </button>
     </div>
   );
 }
