@@ -14,6 +14,10 @@ function CardAtleta({ atleta, onFavoritar }) {
         }}
       />
 
+      <h5>Camisa {atleta.leagues.standard.jersey}</h5>
+      <h5>Nacionalidade: {atleta.birth.country}</h5>
+      <h5>Time: {atleta.team.name}</h5>
+
       <br />
       <button onClick={() => onFavoritar(atleta)}>Adicionar aos favoritos</button>
     </div>
