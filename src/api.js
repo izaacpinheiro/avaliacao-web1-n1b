@@ -1,31 +1,26 @@
-import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const API_HOST = 'api-football-v1.p.rapidapi.com';
-
-const api = axios.create({
-  baseURL: 'https://api-football-v1.p.rapidapi.com/v3',
-  headers: {
-    'x-rapidapi-key': API_KEY,
-    'x-rapidapi-host': API_HOST
-  }
-});
+const opt = {
+    method: "GET",
+    headers: {
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        "x-rapidapi-host": 'api-football-v1.p.rapidapi.com',
+    }
+};
 
 export const buscarAtletas = async (nome) => {
-  try {
-    const response = await api.get('/players', {
-      params: {
-        search: nome,
-        season: '2023'
-      }
-    });
-    console.log("Resposta completa:", response.data);
-    return response.data.response || [];
-  } catch (error) {
-    console.error("Detalhes do erro:", {
-      status: error.response?.status,
-      data: error.response?.data
-    });
-    return [];
-  }
+    try {
+        const response = await fetch(
+            `https://api-football-v1.p.rapidapi.com/v3/players/profiles?search=${nome}`, 
+            opt
+        );
+        const data = await response.json();
+        console.log("Response completa:", data);
+        return data.response || [];
+    } catch (error) {
+        console.error("Detalhes do erro:", {
+            status: error.response?.status,
+            data: error.response?.data
+        });
+        return [];
+    }
 };
