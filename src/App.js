@@ -1,36 +1,59 @@
+import React, { useState } from 'react';
 import './App.css';
-import React, { useState, useEffect} from 'react';
-
 import CardAtleta from './components/CardAtleta';
 import PainelFavoritos from './components/PainelFavoritos';
 import SearchBar from './components/BarraPesquisa';
 
 function App() {
-
   const [atletas, setAtletas] = useState([]);
-  const [favoritos, setFevaritos] = useState([]);
+  const [favoritos, setFavoritos] = useState([]);
+  const [carregando, setCarregando] = useState(false);
 
   const adicionarAosFavoritos = (atleta) => {
-    if (!favoritos.find(f => f.id === atleta.id)) {
-      setFevaritos([...favoritos, atleta]);
+    if (!favoritos.some(f => f.player.id === atleta.player.id)) {
+      setFavoritos([...favoritos, atleta]);
     }
   };
 
+  const removerFavorito = (id) => {
+    setFavoritos(favoritos.filter(f => f.player.id !== id));
+  };
+
   return (
-    <div className='app'>
-      <h1>Busca de Atletas da NBA</h1>
-      <SearchBar onSearch={setAtletas}/>
+    <div className="app-container">
+      <header className="app-header">
+        <h1 className="app-title">Jogadores Profissionais de Futebol</h1>
+      </header>
 
-      <div className='player-grid'>
-        {atletas.map((atleta) => (
-          <CardAtleta
-            atleta={atleta}
-            onFavoritar={adicionarAosFavoritos}
-          />
-        ))}
-      </div>
+      <main className="app-main">
+        <section className="search-section">
+          <SearchBar onSearch={setAtletas} setCarregando={setCarregando} />
+          {carregando && <div className="loading-spinner"></div>}
+        </section>
 
-        <PainelFavoritos favoritos={favoritos}/>
+        <section className="results-section">
+          <h2 className="section-title">Resultados da Busca</h2>
+          <div className="cards-grid">
+            {atletas.map((atleta) => (
+              <CardAtleta
+                key={atleta.player.id}
+                atleta={atleta}
+                onFavoritar={adicionarAosFavoritos}
+                isFavorito={favoritos.some(f => f.player.id === atleta.player.id)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <PainelFavoritos 
+          favoritos={favoritos} 
+          onRemoverFavorito={removerFavorito}
+        />
+      </main>
+
+      <footer className="app-footer">
+        <p>Dados via API-Football</p>
+      </footer>
     </div>
   );
 }

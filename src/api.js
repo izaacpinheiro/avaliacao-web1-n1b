@@ -1,30 +1,31 @@
 import axios from 'axios';
 
-const CHAVE_API = process.env.REACT_APP_CHAVE_API
-const HOST_API = process.env.REACT_APP_HOST_API
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_HOST = 'api-football-v1.p.rapidapi.com';
 
-export const buscarAtletas = async (busca) => {
-    
-    
-      const options = {
-        method: 'GET',
-        url: 'https://api-nba-v1.p.rapidapi.com/players',
-        params: {
-          search: busca,
-          
-        },
-        headers: {
-          'x-rapidapi-key' : CHAVE_API,
-          'x-rapidapi-host' : HOST_API,
-        },
-      };
-    try {
-      //console.log(CHAVE_API)
-      const response = await axios.request(options);
-      return response.data.response;
-    } catch (error) {
-      console.error("Erro ao buscar atleta:", error);
-      return [];
-    }
-    
-  };
+const api = axios.create({
+  baseURL: 'https://api-football-v1.p.rapidapi.com/v3',
+  headers: {
+    'x-rapidapi-key': API_KEY,
+    'x-rapidapi-host': API_HOST
+  }
+});
+
+export const buscarAtletas = async (nome) => {
+  try {
+    const response = await api.get('/players', {
+      params: {
+        search: nome,
+        season: '2023'
+      }
+    });
+    console.log("Resposta completa:", response.data);
+    return response.data.response || [];
+  } catch (error) {
+    console.error("Detalhes do erro:", {
+      status: error.response?.status,
+      data: error.response?.data
+    });
+    return [];
+  }
+};
