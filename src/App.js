@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import React, { useState} from 'react';
 
@@ -15,6 +15,7 @@ function App() {
     if (!favoritos.find(f => f.id === atleta.id)) {
       setFavoritos([...favoritos, atleta]);
     }
+
   };
 
   return (

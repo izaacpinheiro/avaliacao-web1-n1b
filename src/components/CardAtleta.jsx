@@ -30,6 +30,7 @@ function CardAtleta({ atleta, onFavoritar }) {
         onError={(e) => {
           e.target.src = 'https://via.placeholder.com/260x190?text=Sem+Imagem';
         }}
+        className="atleta-photo"
       />
 
       <br />

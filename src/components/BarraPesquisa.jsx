@@ -5,6 +5,7 @@ import './BarraPesquisa.css';
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
+
   const handleSearch = async () => {
     const players = await buscarAtletas(searchTerm);
     onSearch(players);
