@@ -1,26 +1,29 @@
 
-const opt = {
-    method: "GET",
-    headers: {
-        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
-        "x-rapidapi-host": 'api-football-v1.p.rapidapi.com',
-    }
-};
+import axios from 'axios';
 
-export const buscarAtletas = async (nome) => {
+const CHAVE_API = process.env.REACT_APP_CHAVE_API
+const HOST_API = process.env.REACT_APP_HOST_API
+
+export const buscarAtletas = async (busca) => {
+      const options = {
+        method: 'GET',
+        url: 'https://api-nba-v1.p.rapidapi.com/players',
+        params: {
+          search: busca
+        },
+        headers: {
+          'x-rapidapi-key' : CHAVE_API,
+          'x-rapidapi-host' : HOST_API,
+        },
+      };
     try {
-        const response = await fetch(
-            `https://api-football-v1.p.rapidapi.com/v3/players/profiles?search=${nome}`, 
-            opt
-        );
-        const data = await response.json();
-        console.log("Response completa:", data);
-        return data.response || [];
+      
+      const response = await axios.request(options);
+      console.log(response.data.response)
+      return response.data.response;
     } catch (error) {
-        console.error("Detalhes do erro:", {
-            status: error.response?.status,
-            data: error.response?.data
-        });
-        return [];
+      console.error("Erro ao buscar atleta:", error);
+      return [];
     }
-};
+    
+  };
