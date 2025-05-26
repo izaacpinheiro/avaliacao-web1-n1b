@@ -12,6 +12,7 @@ export const buscarAtletas = async (busca) => {
         params: {
           search: busca,
           
+          
         },
         headers: {
           'x-rapidapi-key' : CHAVE_API,
@@ -19,8 +20,9 @@ export const buscarAtletas = async (busca) => {
         },
       };
     try {
-      //console.log(CHAVE_API)
+      alert("chegou")
       const response = await axios.request(options);
+      console.log(response.data.response)
       return response.data.response;
     } catch (error) {
       console.error("Erro ao buscar atleta:", error);

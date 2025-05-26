@@ -1,4 +1,5 @@
 import React from "react";
+import './PainelFavoritos.css';
 
 function PainelFavoritos({ favoritos }) {
     if (favoritos.length === 0)  {

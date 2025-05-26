@@ -1,31 +1,53 @@
 .card-atleta {
-  border: 1px solid #ccc;
-  padding: 12px;
-  margin: 10px;
-  width: 180px;
-  text-align: center;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin: 10px;
+  width: 250px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
 
-.card-atleta img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 8px;
+.card-atleta:hover {
+  transform: translateY(-5px);
 }
 
-.card-atleta button {
-  padding: 6px 10px;
-  background-color: #007bff;
+.atleta-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.atleta-info {
+  margin: 10px 0;
+}
+
+.atleta-info h5 {
+  margin: 5px 0;
+  color: #555;
+}
+
+.favorite-btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
-.card-atleta button:hover {
-  background-color: #0056b3;
+.favorite-btn:hover {
+  background-color: #45a049;
+}
+
+.favorite-btn.favorited {
+  background-color: #f44336;
+}
+
+.favorite-btn.favorited:hover {
+  background-color: #d32f2f;
 }

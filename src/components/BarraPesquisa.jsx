@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { buscarAtletas } from '../api';
+import './BarraPesquisa.css';
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');

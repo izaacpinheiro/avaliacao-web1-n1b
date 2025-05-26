@@ -18,18 +18,30 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Busca de Atletas da NBA</h1>
-      <BarraPesquisa onSearch={setAtletas} />
+    <div className="app-container">
+      <header className="app-header">
+      <center><h1>Busca de Atletas da NBA</h1></center>
+      </header>
+
       
-      <div className="players-grid">
-        {atletas.map((atleta) => (
-          <CardAtleta
+      <section className="search-section">
+      <center><BarraPesquisa onSearch={setAtletas} /></center>
+      </section>
+
+
+      <section className="results-section">
+          <h2 className="section-title">Resultados da Busca</h2>
+          <div className="cards-grid">
+            {atletas.map((atleta) => (
+              <CardAtleta
+              key={atleta.id}
             atleta={atleta}
             onFavoritar={adicionarAosFavoritos}
           />
         ))}
-      </div>
+          </div>
+        </section>
+
 
       <PainelFavoritos favoritos={favoritos} />
     </div>
