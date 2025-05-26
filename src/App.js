@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import React, { useState} from 'react';
 
 import CardAtleta from './components/CardAtleta';
 import PainelFavoritos from './components/PainelFavoritos';
