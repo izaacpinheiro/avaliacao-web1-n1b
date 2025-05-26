@@ -1,6 +1,7 @@
 # Pesquisa de Atletas 🏀
 
 Projeto desenvolvido para a cadeira de Desenvolvimento de Sistemas WEB 1 do curso de Sistemas de Informações. Ele utiliza ReactJS e permite fazer a pesquisa de jogadores da NBA e saber algumas informações sobre o jogados pesquisado.
+
 Foi utilizado a API-NBA da RapidAPI para fazer as requisições dos jogadores (max. requisições por dia = 100)
 
 ## Como usar:
