@@ -1,8 +1,8 @@
 
 import axios from 'axios';
 
-const CHAVE_API = process.env.REACT_APP_CHAVE_API
-const HOST_API = process.env.REACT_APP_HOST_API
+const CHAVE_API = 'c0638c53fbmsh2868ca454b8bb8ap157f12jsn6ac238ea433c'
+const HOST_API = 'api-nba-v1.p.rapidapi.com'
 
 export const buscarAtletas = async (busca) => {
       const options = {
